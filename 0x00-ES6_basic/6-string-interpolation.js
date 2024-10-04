@@ -2,7 +2,7 @@ export default function getSanFranciscoDescription() {
   const year = 2017;
   const budget = {
     income: '$199,868',
-    gdp: '$145.2 bill,ion',
+    gdp: '$145.2 billion',
     capita: '$178,479',
   };
 
