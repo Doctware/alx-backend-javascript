@@ -1,4 +1,4 @@
-import { uploadPhoto, createUser } from './utils.js';
+import { uploadPhoto, createUser } from './utils';
 
 function handuleProfileSignup() {
   return Promise.all([uploadPhoto(), createUser()])
