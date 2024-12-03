@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-async function countStudents(path) {
+async function countStudents (path) {
   try {
     const data = await fs.readFileSync(path, 'utf-8');
 
