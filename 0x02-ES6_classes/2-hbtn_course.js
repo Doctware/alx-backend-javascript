@@ -14,7 +14,7 @@ export default class ALXCourse {
     this._length = length;
     this._students = students;
   }
-i
+
   get name() {
     return this._name;
   }
@@ -35,7 +35,7 @@ i
     if (typeof newLength !== 'number') {
       throw new TypeError('Length must be a number');
     }
-    this._legth = newLength;
+    this._length = newLength;
   }
 
   get students() {
