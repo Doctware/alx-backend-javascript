@@ -11,4 +11,3 @@ export default class EVCar extends Car {
     return new Car(this._brand, this._motor, this._color);
   }
 }
-
