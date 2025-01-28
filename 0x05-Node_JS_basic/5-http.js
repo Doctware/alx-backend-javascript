@@ -4,7 +4,7 @@ const fs = require('fs');
 const countStudents = (database) => new Promise((resolve, reject) => {
   fs.readFile(database, 'utf-8', (err, data) => {
     if (err) {
-      reject(new Error('Cannot load the database'));
+      reject('Cannot load the database');
     } else {
       const lines = data.split('\n').filter((line) => line.trim() !== '');
       const students = lines.slice(1).map((line) => line.split(','));
@@ -27,14 +27,14 @@ const countStudents = (database) => new Promise((resolve, reject) => {
 const app = http.createServer((req, res) => {
   if (req.url === '/') {
     res.writeHead(200, { 'Content-type': 'text/plain' });
-    res.write('Hello Holberton School!');
+    res.write('Hello ALX!');
     res.end();
   } else if (req.url === '/students') {
     const database = process.argv[2];
     countStudents(database)
       .then((data) => {
         res.writeHead(200, { 'Content-type': 'text/plain' });
-        res.write('The is the list of our students\n');
+        res.write('This is the list of our students\n');
         res.write(data);
         res.end();
       })
