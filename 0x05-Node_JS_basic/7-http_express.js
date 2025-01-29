@@ -1,42 +1,39 @@
 const express = require('express');
 const fs = require('fs');
-const path = require('path');
 
 const app = express();
 const PORT = 1245;
 
-const countStudents = (databasePath) => {
-  return new Promise((resolve, reject) => {
-    fs.readFile(databasePath, 'utf-8', (err, data) => {
-      if (err) {
-        reject(new Error('Cannot load the database'));
-        return;
-      }
-      const lines = data.split('\n').filter((line) => line.trim() !== '');
-      if (lines.length === 0) {
-        reject(new Error('Cannot load the database'));
-        return;
-      }
-      const students = {};
-      const fields = lines.slice(1);
-      fields.forEach((line) => {
-        const details = line.split(',');
-        if (details.length >= 2) {
-          const field = details[details.length - 1].trim();
-          if (!students[field]) {
-            students[field] = [];
-          }
-          students[field].push(details[0].trim());
+const countStudents = (databasePath) => new Promise((resolve, reject) => {
+  fs.readFile(databasePath, 'utf-8', (err, data) => {
+    if (err) {
+      reject(new Error('Cannot load the database'));
+      return;
+    }
+    const lines = data.split('\n').filter((line) => line.trim() !== '');
+    if (lines.length === 0) {
+      reject(new Error('Cannot load the database'));
+      return;
+    }
+    const students = {};
+    const fields = lines.slice(1);
+    fields.forEach((line) => {
+      const details = line.split(',');
+      if (details.length >= 2) {
+        const field = details[details.length - 1].trim();
+        if (!students[field]) {
+          students[field] = [];
         }
-      });
-      let response = `Number of students: ${fields.length}\n`;
-      for (const [field, names] of Object.entries(students)) {
-        response += `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}\n`;
+        students[field].push(details[0].trim());
       }
-      resolve(response.trim());
     });
+    let response = `Number of students: ${fields.length}\n`;
+    for (const [field, names] of Object.entries(students)) {
+      response += `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}\n`;
+    }
+    resolve(response.trim());
   });
-};
+});
 
 app.get('/', (req, res) => {
   res.send('Hello ALX!');
