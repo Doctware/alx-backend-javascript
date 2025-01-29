@@ -1,5 +1,5 @@
-const http = require('http');
-const fs = require('fs');
+import http from 'http';
+import fs from 'fs';
 
 const countStudents = (database) => new Promise((resolve, reject) => {
   fs.readFile(database, 'utf-8', (err, data) => {
