@@ -24,18 +24,18 @@ const studentList: Student[] = [student1, student2]
 const table = document.createElement('table');
 const tbody = document.createElement('tbody');
 
-studentList.forEach((stuednt) => {
+studentList.forEach((student) => {
   const row = document.createElement('tr');
 
   const firstNameCell = document.createElement('td');
-  firstNameCell1.textContent = student.firstName;
+  firstNameCell.textContent = student.firstName;
 
   const locationCell = document.createElement('td');
-  locatioCell.textContent = student.location;
+  locationCell.textContent = student.location;
 
   row.appendChild(firstNameCell);
   row.appendChild(locationCell);
-  tbody.appendchild(row)
+  tbody.appendChild(row)
 })
 
 table.appendChild(tbody);
